@@ -1,0 +1,58 @@
+@import './variables';
+@import './mixins';
+.form-heading {
+    flex: 0 1 40%;
+    margin-left: 100px;
+}
+.form-container {
+    @include flex;
+    flex: 0 1 30%;
+    form {
+        width: 100%;
+    }
+    .form-input {
+        padding: 3% 0;
+        position: relative;
+        label {
+            position: absolute;
+            pointer-events: none;
+            top: 10px;
+            transition: 300ms ease all;
+        }
+        input {
+            cursor: text;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            border-bottom: 1px solid $color-input-gray;
+            padding-top: 10px;
+            width: 100%;
+            &:focus {
+                outline: 0;
+                border-bottom: 1px solid $color-blue;
+                +label {
+                    cursor: text;
+                    transform-origin: left bottom;
+                    transform: translate(0, -20px) scale(1);
+                    color: $color-blue;
+                }
+            }
+        }
+    }
+    .form__error {
+        color: $color-red;
+        padding-top: 2px;
+    }
+
+    .btn-login {
+        display: inline-block;
+        width: 100%;
+        background-color: $color-dark-pink;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        padding: 8px;
+        margin-top: 30px;
+        border: none;
+    }
+}

@@ -1,0 +1,22 @@
+@import "https://fonts.googleapis.com/css?family=Dosis:400,600,700";
+@import './assets/css/reset';
+@import './assets/css/mixins';
+@import './assets/css/variables';
+@import './assets/css/form';
+
+/** base styles **/
+body{
+    font-family: $font-family;
+}
+
+.main-container {
+    width: 75%;
+    margin: auto;
+    @include flex;
+    flex-wrap: wrap; 
+}
+.column-flex-container {
+    @include flex;
+    flex-direction: column;
+}
+  
