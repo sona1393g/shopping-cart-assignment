@@ -1,0 +1,14 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/mixins';
+
+footer {
+    background-color: $color-light-grey;
+    width: 100%;
+    p {
+        font-weight: $font-semi-bold;
+        padding: 12px 0 ;
+        margin: 0 auto;
+    }
+    margin-top: 20px;
+
+}
