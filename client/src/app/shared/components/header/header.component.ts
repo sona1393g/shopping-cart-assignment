@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LOGIN, REGISTER } from '../../../constants/routes.constants';
+import { HOME, LOGIN, REGISTER } from '../../../constants/routes.constants';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,7 @@ import { LOGIN, REGISTER } from '../../../constants/routes.constants';
 export class HeaderComponent implements OnInit {
   login = LOGIN.url;
   signUp = REGISTER.url;
+  home = HOME.url;
   constructor() { }
 
   ngOnInit(): void {

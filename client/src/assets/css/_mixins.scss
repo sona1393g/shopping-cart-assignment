@@ -14,3 +14,11 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin btn {
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    border: none;  
+}

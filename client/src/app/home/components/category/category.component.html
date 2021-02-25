@@ -1,0 +1,10 @@
+<article>
+    <figure *ngFor="let category of categories" class="category">
+        <img src="../../../assets{{category.imageUrl}}" alt="{{category.name}}">
+        <figcaption>
+            <h2>{{category.name}}</h2>
+            <p>{{category.description}}</p>
+            <button (click)="onExplore(category.id)" class="btn-sm-pink">Explore {{category.key}}</button>
+        </figcaption>
+    </figure>
+</article>

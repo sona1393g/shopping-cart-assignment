@@ -15,8 +15,58 @@ body{
     @include flex;
     flex-wrap: wrap; 
 }
+
+@media only screen and (max-width: 768px) {
+    .main-container {
+        width: 100%;
+    } 
+}
 .column-flex-container {
     @include flex;
     flex-direction: column;
 }
-  
+
+.d-none {
+    display: none;
+}
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/*
+Button common 
+*/
+.btn-big-pink {
+    @include btn;
+    width: 100%;
+    padding: 8px;
+    margin-top: 30px;
+    background-color: $color-dark-pink;
+}
+
+.btn-sm-pink {
+    @include btn;
+    padding: 10px;
+    background-color: $color-dark-pink;
+}

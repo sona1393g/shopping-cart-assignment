@@ -28,31 +28,22 @@
             padding-top: 10px;
             width: 100%;
             &:focus {
-                outline: 0;
                 border-bottom: 1px solid $color-blue;
                 +label {
                     cursor: text;
                     transform-origin: left bottom;
-                    transform: translate(0, -20px) scale(1);
+                    transform: translate(0, -16px) scale(1);
                     color: $color-blue;
                 }
             }
+            // &:not(:placeholder-shown) + label {
+            //     transform: translate(0, 0) scale(1);
+            //     cursor: pointer;
+            // }
         }
     }
     .form__error {
         color: $color-red;
         padding-top: 2px;
-    }
-
-    .btn-login {
-        display: inline-block;
-        width: 100%;
-        background-color: $color-dark-pink;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-        padding: 8px;
-        margin-top: 30px;
-        border: none;
     }
 }

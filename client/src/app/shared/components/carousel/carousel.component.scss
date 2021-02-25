@@ -1,0 +1,70 @@
+@import "../../../../assets/css/variables";
+@import "../../../../assets/css/mixins";
+
+.slide-container {
+    box-shadow: 0px 6px 5px -3px $color-input-gray;
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin-top: 10px;
+    }
+    /* The dots/bullets/indicators */
+    .slides-dot {
+        text-align: center;
+    }
+    .dot {
+        cursor: pointer;
+        height: 8px;
+        width: 8px;
+        margin: 0 2px;
+        background-color: $color-light-grey;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        margin-bottom: 1%;
+    }
+    .active,
+    .dot:hover {
+        background-color: $color-input-gray;
+    }
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .prev:focus,
+    .next:hover,
+    .next:focus {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+    img {
+        width: 100%;
+    }
+
+}
+/*  @media only screen and (min-width:768px) {
+    .slide-container {
+        border-bottom: 2px solid $color-grey;
+        margin: 10px 15% 0;
+      }
+    } */

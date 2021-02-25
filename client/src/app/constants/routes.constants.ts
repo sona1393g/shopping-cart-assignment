@@ -1,3 +1,4 @@
+
 export const LOGIN = {
     name: 'login',
     url : '/auth/login'
@@ -5,4 +6,9 @@ export const LOGIN = {
 export const REGISTER = {
     name: 'register',
     url: '/auth/register'
+};
+
+export const HOME = {
+    name: 'home',
+    url: '/home'
 };
