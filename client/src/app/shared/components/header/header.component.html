@@ -6,7 +6,7 @@
         <nav class="navigation" role="navigation" rel="primary">
             <ul>
                 <li> <a [routerLink]="home">Home</a> </li>
-                <li> <a routerLink="product-list">Products</a> </li>
+                <li> <a [routerLink]="products">Products</a> </li>
             </ul>
         </nav>
         <div class="more-navigations">
@@ -17,7 +17,7 @@
                     <li> <a [routerLink]="signUp">Register</a> </li>
                 </ul>
             </nav>
-            <button aria-label="Cart Button">
+            <button aria-label="Cart Button" (click)="toggleCartOpen()">
                 <svg version="1.1" id="cart-icon" focusable="false" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24"
                     style="enable-background:new 0 0 24 24;" xml:space="preserve">
@@ -30,3 +30,6 @@
 
     </div>
 </header>
+
+<app-cart [isCartVisible]="isCartVisible" (closeCart)="toggleCartOpen()"></app-cart>
+<div *ngIf="isCartVisible" class="header-overlay" (click)="toggleCartOpen()"></div>

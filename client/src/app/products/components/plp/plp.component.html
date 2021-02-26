@@ -1,0 +1,9 @@
+<section class="main-container">
+    <app-plp-sidebar [categories]="categories" class="menu"></app-plp-sidebar>
+    <section class="products">
+        <h1 class="d-none">Product Listing Page</h1>
+        <div *ngFor="let product of products" class="product__container">
+            <app-product [product]="product"></app-product>
+        </div>
+    </section>
+</section>

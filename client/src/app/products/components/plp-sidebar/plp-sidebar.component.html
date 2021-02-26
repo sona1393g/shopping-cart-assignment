@@ -1,0 +1,10 @@
+
+<nav class="sidebar" aria-label="Category List">
+    <div (click)="dropdownToggle()">{{selectedCategory || 'Select Category'}}</div>
+    <ul [ngClass]="dropdownFlag === true ? 'myLinks' : 'd-none'">
+        <li *ngFor="let category of categories; let i = index" (click)="onCategorySelect(category.id,i)"
+            [class.active]="selectedCategory === category.id">
+            <a [routerLink]="" [title]="category.name">{{category.name}}</a>
+        </li>
+    </ul>
+</nav>

@@ -12,3 +12,8 @@ export const HOME = {
     name: 'home',
     url: '/home'
 };
+
+export const PRODUCTS = {
+    name: 'products',
+    url: '/products'
+};

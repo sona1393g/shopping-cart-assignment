@@ -15,3 +15,15 @@ export interface ICategory {
     imageUrl?: string;
     id?: string;
 }
+
+export interface IProduct {
+    name?: string;
+    sku?:string;
+    description?:string;
+    price?:number;
+    stock?: number;
+    imageURL?: string;
+    id?: string;
+    category?:string;
+    number?:number;
+}

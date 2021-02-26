@@ -1,13 +1,11 @@
-@import '../../../../assets/css/variables';
-@import '../../../../assets/css/mixins';
+@import "../../../../assets/css/variables";
+@import "../../../../assets/css/mixins";
 
 header {
-    box-shadow: 0px 3px 5px 0px $color-light-grey;
-    margin-bottom: 20px;
+    box-shadow: 0px 3px 5px 0px $color-light-gray;
     padding: 10px 10px 0;
     .logo {
         flex: 0 1 20%;
-        
         img {
             width: 75%;
             padding: 5px;
@@ -15,7 +13,7 @@ header {
     }
     .navigation {
         @include flex;
-        flex:1;
+        flex: 1;
         align-items: flex-end;
         margin: 3.5% 0 0 2%;
     }
@@ -25,7 +23,6 @@ header {
             list-style: none;
             li {
                 margin-left: 10%;
-
                 a {
                     color: $color-black;
                     font-weight: $font-bold;
@@ -36,8 +33,9 @@ header {
         }
     }
     .more-navigations {
-        flex: 0 1 20%;
-        position: relative;
+        flex: 0 1 16%;
+        display: flex;
+        flex-direction: column;
         button {
             @include flex-center;
             svg {
@@ -45,11 +43,44 @@ header {
                 height: 28px;
                 fill: $color-pink;
             }
-            position: absolute;
-            bottom: 0;
-            right: 35px;
             border: 0;
             padding: 4%;
         }
+    }
+    @media only screen and (max-width: 767px) {
+        .logo {
+            flex: 0 1 30%;
+        }
+        .navigation {
+            display: none;
+        }
+        .more-navigations {
+            flex: 1 1 20%;
+            flex-direction: row-reverse;
+            ul {
+                display: none;
+            }
+            button {
+                width: 114px;
+                height: 56px;
+                padding: 0%;
+                left: 57%;
+            }
+        }
+        margin-bottom: 0px;
+        padding: 1px 1px 0;
+    }
+}
+
+@media only screen and (min-width: 1023px) {
+    .header-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.445);
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 }

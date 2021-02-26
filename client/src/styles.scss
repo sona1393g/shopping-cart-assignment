@@ -10,7 +10,7 @@ body{
 }
 
 .main-container {
-    width: 75%;
+    width: 80%;
     margin: auto;
     @include flex;
     flex-wrap: wrap; 
@@ -69,4 +69,8 @@ Button common
     @include btn;
     padding: 10px;
     background-color: $color-dark-pink;
+}
+
+.modal-open {
+    overflow: hidden;
 }
