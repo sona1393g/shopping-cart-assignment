@@ -1,49 +1,56 @@
-@import './variables';
-@import './mixins';
-.form-heading {
+@import "./variables";
+@import "./mixins";
+
+.form {
+  &__heading {
     flex: 0 1 40%;
-    margin-left: 100px;
-}
-.form-container {
+    margin-left: 32px;
+  }
+  &__container {
     @include flex;
-    flex: 0 1 30%;
     form {
-        width: 100%;
+      width: 100%;
     }
-    .form-input {
-        padding: 3% 0;
-        position: relative;
-        label {
-            position: absolute;
-            pointer-events: none;
-            top: 10px;
-            transition: 300ms ease all;
+  }
+  &__input {
+    padding: 3% 0;
+    position: relative;
+    label {
+      position: absolute;
+      pointer-events: none;
+      top: 10px;
+      transition: 300ms ease all;
+    }
+    input {
+      cursor: text;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 1px solid $color-input-gray;
+      padding-top: 10px;
+      width: 100%;
+      &:focus,
+      &:valid {
+        border-bottom: 1px solid $color-blue;
+        + label {
+          cursor: text;
+          transform-origin: left bottom;
+          transform: translate(0, -16px) scale(1);
+          color: $color-blue;
         }
-        input {
-            cursor: text;
-            border: 0;
-            outline: 0;
-            background: transparent;
-            border-bottom: 1px solid $color-input-gray;
-            padding-top: 10px;
-            width: 100%;
-            &:focus {
-                border-bottom: 1px solid $color-blue;
-                +label {
-                    cursor: text;
-                    transform-origin: left bottom;
-                    transform: translate(0, -16px) scale(1);
-                    color: $color-blue;
-                }
-            }
-            // &:not(:placeholder-shown) + label {
-            //     transform: translate(0, 0) scale(1);
-            //     cursor: pointer;
-            // }
-        }
+      }
     }
-    .form__error {
-        color: $color-red;
-        padding-top: 2px;
+  }
+  &__error {
+    color: $color-red;
+    padding-top: 2px;
+  }
+  @media only screen and (min-width: 768px) {
+    &__heading {
+      margin-left: 100px;
     }
+    &__container {
+      flex: 0 1 30%;
+    }
+  }
 }

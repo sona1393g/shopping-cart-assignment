@@ -1,24 +1,28 @@
 /** mixins */
 
 @mixin flex {
-    display: flex;
+  display: flex;
 }
 
 @mixin flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 @mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin btn {
-    display: inline-block;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    border: none;  
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+}
+
+@mixin float-left {
+  float: left;
 }

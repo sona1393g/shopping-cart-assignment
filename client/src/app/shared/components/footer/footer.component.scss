@@ -6,9 +6,17 @@ footer {
     width: 100%;
     p {
         font-weight: $font-semi-bold;
-        padding: 12px 0 ;
+        padding: 12px 0px;
         margin: 0 auto;
     }
     margin-top: 20px;
 
 }
+
+@media only screen and (max-width: 1023px) {
+  .main-container {
+    justify-content: center;
+  }
+}
+
+

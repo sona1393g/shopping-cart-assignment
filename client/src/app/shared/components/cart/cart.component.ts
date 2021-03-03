@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PRODUCTS } from 'src/app/constants/routes.constants';
 import { IProduct } from 'src/app/interfaces/interfaces';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,21 +11,29 @@ import { IProduct } from 'src/app/interfaces/interfaces';
 export class CartComponent implements OnInit {
   @Input() isCartVisible = false;
   @Output() closeCart = new EventEmitter();
-  products: IProduct[] =[
-  ];
+  products: IProduct[] = [];
   totalItems = 0;
   totalPrice = 0;
   productUrl = PRODUCTS.url;
-  constructor() { }
+  constructor(private readonly cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.getItemOfCart().subscribe(res => {
+      this.products = res.products;
+      this.totalItems = res.totalItems;
+      this.totalPrice = 0;
+      this.products.forEach(item => {
+        const total = item.total || 0;
+        this.totalPrice = this.totalPrice + total;
+      });
+    });
   }
 
-  deleteProduct(item: IProduct) {
-
+  deleteProduct(item: IProduct): void {
+    this.cartService.removeItemOfcart(item.id);
   }
-  addProduct(item: IProduct) {
-
+  addProduct(item: IProduct): void {
+    this.cartService.addItemToCart(item);
   }
 
 }

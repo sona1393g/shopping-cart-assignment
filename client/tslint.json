@@ -147,6 +147,7 @@
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "jsdoc-format": [true, "check-multiline-start"]
   }
 }

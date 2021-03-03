@@ -13,13 +13,13 @@ body{
     width: 80%;
     margin: auto;
     @include flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 @media only screen and (max-width: 768px) {
     .main-container {
         width: 100%;
-    } 
+    }
 }
 .column-flex-container {
     @include flex;
@@ -55,7 +55,7 @@ body{
     }
 }
 /*
-Button common 
+Button common
 */
 .btn-big-pink {
     @include btn;
@@ -73,4 +73,11 @@ Button common
 
 .modal-open {
     overflow: hidden;
+}
+
+/**
+  common Classes
+**/
+.float-left {
+  @include float-left;
 }

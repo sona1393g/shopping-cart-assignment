@@ -6,14 +6,14 @@ import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CartComponent } from './components/cart/cart.component';
 
-
-
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, CarouselComponent, CartComponent],
-  imports: [
-    CommonModule,
-    RouterModule
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    CarouselComponent,
+    CartComponent,
   ],
-  exports:[HeaderComponent, FooterComponent, CarouselComponent]
+  imports: [CommonModule, RouterModule],
+  exports: [HeaderComponent, FooterComponent, CarouselComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

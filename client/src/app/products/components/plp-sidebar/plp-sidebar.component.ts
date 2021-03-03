@@ -1,25 +1,31 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-plp-sidebar',
   templateUrl: './plp-sidebar.component.html',
-  styleUrls: ['./plp-sidebar.component.scss']
+  styleUrls: ['./plp-sidebar.component.scss'],
 })
 export class PlpSidebarComponent implements OnInit {
   @Input() categories: ICategory[] = [];
-  selectedCategory = '';
+  @Input() selectedCategory = '';
   dropdownFlag = false;
-  constructor() { }
+  constructor(
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onCategorySelect(value = ''): void {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { category: value },
+      queryParamsHandling: 'merge',
+    });
   }
-
-  onCategorySelect(value='', index: number) {
-
-  }
-  dropdownToggle() {
+  dropdownToggle(): void {
     this.dropdownFlag = !this.dropdownFlag;
   }
-
 }

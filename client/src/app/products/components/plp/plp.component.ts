@@ -1,30 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ICategory, IProduct } from 'src/app/interfaces/interfaces';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-plp',
   templateUrl: './plp.component.html',
-  styleUrls: ['./plp.component.scss']
+  styleUrls: ['./plp.component.scss'],
 })
 export class PlpComponent implements OnInit {
-  products: IProduct[] =[];
-  categories: ICategory[] =[];
-  constructor(private readonly productsService: ProductsService) { }
+  products: IProduct[] = [];
+  categories: ICategory[] = [];
+  selectedCategory = '';
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((res) => {
+      this.selectedCategory = res.category;
+      this.getProducts();
+    });
+  }
 
   ngOnInit(): void {
-    this.getProducts();
     this.getCategories();
   }
-  getProducts() {
+  /**
+   * @description get products
+   */
+  getProducts(): void {
     this.productsService.getProducts().subscribe((res: IProduct[]) => {
-      this.products = res;
-    })
+      this.products = this.selectedCategory
+        ? res.filter((item) => item.category === this.selectedCategory)
+        : res;
+    });
   }
-  getCategories() {
+  /**
+   * @description get categories for menu
+   */
+  getCategories(): void {
     this.productsService.getCategories().subscribe((res: ICategory[]) => {
       this.categories = res;
-    })
+    });
   }
-
 }

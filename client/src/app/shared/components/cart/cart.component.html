@@ -1,6 +1,4 @@
-<div *ngIf="isCartVisible"
-[ngStyle]="{'background-color': products.length > 0 ? 'rgb(214, 214, 214)': 'white'}"
-    class="cart-container">
+<div *ngIf="isCartVisible" [ngClass]="totalItems > 0 ? 'cart-background-grey':'cart-background-white'" class="cart-container">
     <header class="item-header" [ngClass]="totalItems ? 'fill': ''">
         <div class="items-text">
             <strong>My Cart</strong>
@@ -11,41 +9,42 @@
     </header>
 
     <ng-container *ngFor="let product of products">
-        <div class="item-body product" *ngIf="product.number">
+        <div class="item-body product">
             <a href="#" [title]="product.name">
-                <img class="product-image" src="../../../assets{{product.imageURL}}"
+                <img class="product__image" src="../../../assets{{product.imageURL}}"
                     alt="">
             </a>
-            <div class="product-name">
+            <div class="product__name">
                 {{product.name}}
             </div>
-            <button class="porduct-num product-minus" (click)="deleteProduct(product)" aria-label="decrement"
-                attr.aria-label="total quantity is {{product.number}} and price for one is {{product.price}} click to decrease one quantity
-                 and total price of item is {{product.price}}">
+            <button class="product__num product__minus" (click)="deleteProduct(product)"
+            aria-label="decrement"
+                attr.aria-label="total quantity is {{product.count}} and price for one is {{product.price}} click to decrease one quantity
+                 and total price of item is {{product.total}}">
                 <span class="minus">-</span>
             </button>
-            <span class="product-number">{{product.number}}</span>
-            <button class="porduct-num product-plus" (click)="addProduct(product)" aria-label="increment"
-                attr.aria-label="total quantity is {{product.number}} and price for one is {{product.price}} click to increase one quantity
-                and total price of item is {{product.price}}">
+            <span class="product__number">{{product.count}}</span>
+            <button class="product__num product__plus" (click)="addProduct(product)" aria-label="increment"
+                attr.aria-label="total quantity is {{product.count}} and price for one is {{product.price}} click to increase one quantity
+                and total price of item is {{product.total}}">
                 <span class="plus">+</span>
             </button>
 
-            <span class="product-mutiple">&times;</span>
-            <span class="product-price">{{product.price}}</span>
-            <span class="product-total-price">{{product.price}}</span>
+            <span class="product__mutiple">&times;</span>
+            <span class="product__price">{{product.price}}</span>
+            <span class="product__total--price">{{product.total}}</span>
         </div>
 
     </ng-container>
 
-    <div class="brand-banner clearfix" *ngIf="products.length > 0 ; else noProductBody">
+    <div class="brand-banner clearfix" *ngIf="totalItems > 0 ; else noProductBody">
         <img src="../../../assets/images/lowest-price.png" alt="lowest price logo" class="logo-img">
         <div class="image-text">you won't find it cheaper anywhere</div>
     </div>
 
     <ng-template #noProductBody>
-        <div class="noProductBody">
-            <div class="no-item-text">
+        <div class="product__empty">
+            <div class="product__empty--text">
                 <h2>No item in your cart</h2>
             </div>
             <div>
@@ -56,17 +55,17 @@
 
 
     <footer class="item-footer" >
-      <ng-container *ngIf="products.length > 0 ; else noProduct">
+      <ng-container *ngIf="totalItems > 0 ; else noProduct">
         <div class="promo-code">Promo code can be applied on payment page</div>
         <button class="btn btn-tile btn-cart" (click)="closeCart.emit()">
-            <span class="btn-text">Proceed to Checkout</span>
+            <span class="float-left">Proceed to Checkout</span>
             <span class="price">Rs.{{totalPrice}}</span>
         </button>
       </ng-container>
     </footer>
     <ng-template #noProduct>
-        <button class="btn btn-tile btn-cart" [routerLink]="productUrl" (click)="closeCart.emit()">
-            <span class="no-product-btn">Start Shoping</span>
+        <button class="btn-cart" [routerLink]="productUrl" (click)="closeCart.emit()">
+            <span class="product__empty--button">Start Shoping</span>
         </button>
     </ng-template>
 </div>

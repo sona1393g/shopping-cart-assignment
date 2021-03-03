@@ -1,10 +1,16 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
-import { HOME, LOGIN, PRODUCTS, REGISTER } from '../../../constants/routes.constants';
+import {
+  HOME,
+  LOGIN,
+  PRODUCTS,
+  REGISTER,
+} from 'src/app/constants/routes.constants';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   login = LOGIN.url;
@@ -12,14 +18,21 @@ export class HeaderComponent implements OnInit {
   home = HOME.url;
   products = PRODUCTS.url;
   isCartVisible = false;
-  constructor(private readonly renderer: Renderer2) { }
+  totalItemInCart = 0;
+  constructor(
+    private readonly renderer: Renderer2,
+    private readonly cartService: CartService
+  ) {}
 
   ngOnInit(): void {
+    this.cartService.getItemOfCart().subscribe((res) => {
+      this.totalItemInCart = res.totalItems;
+    });
   }
-  toggleCartOpen() {
+  toggleCartOpen(): void {
     this.isCartVisible = !this.isCartVisible;
-    this.isCartVisible 
-    ? this.renderer.addClass(document.body, 'modal-open')
-    : this.renderer.removeClass(document.body, 'modal-open') ;
+    this.isCartVisible
+      ? this.renderer.addClass(document.body, 'modal-open')
+      : this.renderer.removeClass(document.body, 'modal-open');
   }
 }

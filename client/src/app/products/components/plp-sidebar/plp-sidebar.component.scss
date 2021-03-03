@@ -2,72 +2,66 @@
 @import "../../../../assets/css/mixins";
 
 li {
-    a {
-        color: black;
-        text-decoration: none;
-    }
+  a {
+    color: black;
+    text-decoration: none;
+  }
 }
-.sidebar {
-    div {
-        display: none;
-    }
-    ul {
-        display: block;
-    }
-}
-
 .active {
-    background-color: $color-pink;
+  background-color: $color-pink;
 }
 
-
-@media only screen and (max-width: 767px) {
-    .sidebar {
-        display: block;
-        flex: 1 1 100%;
-        div {
-            display: block;
-            padding: 8px;
-            text-align: center;
-            color: white;
-            background-color: $color-pink;
-        }
-        ul {
-            background-color: $color-light-gray;
-            list-style: none;
-            padding: 10px;
-            &.d-none {
-                display: none;
-            }
-        }
+.sidebar {
+  display: block;
+  flex: 1 1 100%;
+  div {
+    display: block;
+    padding: 8px;
+    text-align: center;
+    color: white;
+    background-color: $color-pink;
+  }
+  ul {
+    background-color: $color-light-gray;
+    list-style: none;
+    padding: 10px;
+    &.d-none {
+      display: none;
     }
+  }
 }
 
 @media only screen and (min-width: 768px) {
-    .sidebar {
-        background-color: $color-light-gray;
-        @include flex;
-        height: 100vh;
-        ul {
-            width: 100%;
-            padding-inline-start: 0px;
-            li {
-                border-bottom: 1px solid $color-input-gray;
-                list-style: none;
-                padding: 12px;
-                cursor: pointer;
-                margin: 0 10px;
-            }
-        }
+  .sidebar {
+    background-color: $color-light-gray;
+    @include flex;
+    height: 100vh;
+    div {
+      display: none;
     }
+    ul {
+      width: 100%;
+      padding-inline-start: 0px;
+      &.d-none {
+        display: block;
+      }
+      li {
+        border-bottom: 1px solid $color-input-gray;
+        list-style: none;
+        padding: 12px;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: 1023px) {
-    .sidebar {
-        ul {
-            li {
-                margin: 0 20px;
-            }
-        }
+  .sidebar {
+    ul {
+      li {
+        margin: 0 20px;
+      }
     }
+  }
 }
