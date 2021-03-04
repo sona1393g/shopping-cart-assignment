@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from 'src/app/interfaces/interfaces';
 
 @Component({
-  selector: 'app-plp-sidebar',
-  templateUrl: './plp-sidebar.component.html',
-  styleUrls: ['./plp-sidebar.component.scss'],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class PlpSidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit {
   @Input() categories: ICategory[] = [];
   @Input() selectedCategory = '';
   dropdownFlag = false;

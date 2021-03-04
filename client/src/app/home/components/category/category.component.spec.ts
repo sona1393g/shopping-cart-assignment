@@ -1,6 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { CategoryComponent } from './category.component';
+import {
+  RouterTestingModule,
+} from '@angular/router/testing';
+import { getTestBanners, getTestCategories } from 'src/app/testing/mockData';
+
+const CATEGORIES = getTestCategories();
 
 describe('CategoryComponent', () => {
   let component: CategoryComponent;
@@ -8,9 +14,9 @@ describe('CategoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoryComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [CategoryComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +27,8 @@ describe('CategoryComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should not have categories after construction', () => {
+    expect(component.categories).toEqual([]);
   });
 });

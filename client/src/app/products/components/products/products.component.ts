@@ -4,11 +4,11 @@ import { ICategory, IProduct } from 'src/app/interfaces/interfaces';
 import { ProductsService } from '../../services/products.service';
 
 @Component({
-  selector: 'app-plp',
-  templateUrl: './plp.component.html',
-  styleUrls: ['./plp.component.scss'],
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class PlpComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
   categories: ICategory[] = [];
   selectedCategory = '';
