@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICategory } from 'src/app/interfaces/interfaces';
 
@@ -7,21 +7,30 @@ import { ICategory } from 'src/app/interfaces/interfaces';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnChanges {
   @Input() categories: ICategory[] = [];
-  @Input() selectedCategory = '';
+  @Input() selectedCategory: string | undefined;
   dropdownFlag = false;
+  selectedCategoryName: string | undefined;
   constructor(
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selectedCategory?.currentValue) {
+      this.selectedCategoryName = this.categories.find(
+        (item) => item.id === this.selectedCategory
+      )?.name;
+    } else {
+      this.selectedCategoryName = '';
+    }
+  }
 
-  onCategorySelect(value = ''): void {
+  onCategorySelect(category = ''): void {
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: { category: value },
+      queryParams: { category },
       queryParamsHandling: 'merge',
     });
   }

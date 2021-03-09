@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICategory, IProduct } from 'src/app/interfaces/interfaces';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from 'src/app/products/services/products.service';
 
+/**
+ * @description this is the component for product listing
+ */
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
@@ -15,15 +18,14 @@ export class ProductsComponent implements OnInit {
   constructor(
     private readonly productsService: ProductsService,
     private readonly route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.getCategories();
     this.route.queryParams.subscribe((res) => {
       this.selectedCategory = res.category;
       this.getProducts();
     });
-  }
-
-  ngOnInit(): void {
-    this.getCategories();
   }
   /**
    * @description get products

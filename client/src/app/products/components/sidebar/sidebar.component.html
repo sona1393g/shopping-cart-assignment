@@ -1,6 +1,6 @@
 
 <nav class="sidebar" aria-label="Category List">
-    <div (click)="dropdownToggle()">{{selectedCategory || 'Select Category'}}</div>
+    <div (click)="dropdownToggle()">{{selectedCategoryName || 'Select Category'}}</div>
     <ul [ngClass]="dropdownFlag === true ? 'myLinks' : 'd-none'">
         <li *ngFor="let category of categories; let i = index" (click)="onCategorySelect(category.id)"
             [class.active]="selectedCategory === category.id">

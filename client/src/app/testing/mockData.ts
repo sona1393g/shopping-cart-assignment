@@ -280,31 +280,6 @@ export function getTestProducts(): IProduct[] {
       count: 0,
     },
     {
-      name: 'Close Up Ever Fresh Red Hot Gel Toothpaste, 150 gm',
-      imageURL: '/static/images/products/beauty-hygiene/closeup.jpg',
-      description:
-        " Closeup's unique Active Zinc Mouthwash not only cleans deep corners of your mouth of residual germs it also gives you upto 12 Hours Fresh Breath.",
-      price: 82,
-      stock: 50,
-      category: '5b68994e3d1a866534f516df',
-      sku: 'bh-closeup-150',
-      id: '5b6c727801a7c38429530894',
-      count: 0,
-    },
-    {
-      name:
-        "Pampers Diapers Pants - Large Size, Monthly Box Pack, New, 128's pack",
-      imageURL: '/static/images/products/baby/pampers.jpg',
-      description:
-        'Pampers dry, pants style diapers are the only pants in India with new air channels that provides your baby with breathable dryness overnight.',
-      price: 1999,
-      stock: 50,
-      category: '5b6899683d1a866534f516e0',
-      sku: 'baby-pamper-128',
-      id: '5b6c746801a7c38429530895',
-      count: 0,
-    },
-    {
       name: 'Mamypoko Pants Style Diapers - Large, 62 pcs',
       imageURL: '/static/images/products/baby/mamy.jpg',
       description:
@@ -350,19 +325,6 @@ export function getTestProducts(): IProduct[] {
       category: '5b6899683d1a866534f516e0',
       sku: 'baby-dove-50',
       id: '5b6c758301a7c38429530899',
-      count: 0,
-    },
-    {
-      name:
-        "Johnson's Active Kids Shampoo - Shiny Drops With Argan Oil, 100 ml",
-      imageURL: '/static/images/products/baby/shampoo.jpg',
-      description:
-        'A hair care product range specifically for kids aged 2 years and above. This mild shiny drops shampoo formula has been developed to boost natural shine & help reduce frizz, leaving hair silky smooth and healthy looking.',
-      price: 95,
-      stock: 50,
-      category: '5b6899683d1a866534f516e0',
-      sku: 'baby-shampoo-100',
-      id: '5b6c75e101a7c3842953089a',
       count: 0,
     },
     {

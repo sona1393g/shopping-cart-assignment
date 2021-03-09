@@ -12,12 +12,14 @@ export class ToasterService {
 
   show(msg: string): void {
     this.snackbar = document.getElementById('snackbar');
-    this.snackbar.innerHTML = msg;
-    this.snackbar.classList.add('show');
-    const timeout = setTimeout(() => {
-      this.remove();
-      clearTimeout(timeout);
-    }, TOASTER_TIMEOUT);
+    if (this.snackbar) {
+      this.snackbar.innerHTML = msg;
+      this.snackbar.classList.add('show');
+      const timeout = setTimeout(() => {
+        this.remove();
+        clearTimeout(timeout);
+      }, TOASTER_TIMEOUT);
+    }
   }
   remove(): void {
     this.snackbar = document.getElementById('snackbar');

@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -9,6 +9,8 @@ import { IBanner, ICategory } from 'src/app/interfaces/interfaces';
 import { environment } from '../../../environments/environment';
 import { ApiEndPoints } from 'src/app/constants/apiEndPoints';
 import { getTestBanners, getTestCategories } from 'src/app/testing/mockData';
+import { asyncData } from 'src/app/testing/async-observable-helpers';
+import { TestHomeService } from 'src/app/testing/test-home.service';
 
 describe('HomeService', () => {
   let service: HomeService;
@@ -16,36 +18,45 @@ describe('HomeService', () => {
   let httpClientSpy: { get: jasmine.Spy };
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [HomeService],
+      providers: [{ provider: HomeService, useClass: TestHomeService }],
     });
-    service = TestBed.inject(HomeService);
     httpMock = TestBed.inject(HttpTestingController);
+  });
+  beforeEach(() => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    service = new HomeService(httpClientSpy as any);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should return expected Banners', () => {
+  it('should return expected banners (HttpClient called once)', () => {
     const expectedBanners: IBanner[] = getTestBanners();
+
+    httpClientSpy.get.and.returnValue(asyncData(expectedBanners));
+
     service
       .getBanners()
       .subscribe(
-        (data) => expect(data).toEqual(expectedBanners, 'expected Banners'),
+        (banners) =>
+          expect(banners).toEqual(expectedBanners, 'expected banners'),
         fail
       );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
-  it('should return expected Categories', () => {
+  it('should return expected categories (HttpClient called once)', () => {
     const expectedCategories: ICategory[] = getTestCategories();
+
+    httpClientSpy.get.and.returnValue(asyncData(expectedCategories));
+
     service
       .getCategories()
       .subscribe(
-        (data) =>
-          expect(data).toEqual(expectedCategories, 'expected Categories'),
+        (cat) => expect(cat).toEqual(expectedCategories, 'expected categories'),
         fail
       );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
 });

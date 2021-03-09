@@ -1,4 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -9,16 +11,21 @@ import { TestHomeService } from 'src/app/testing/test-home.service';
 import { HomeService } from '../../services/home.service';
 
 import { HomeComponent } from './home.component';
-
+@Component({
+  selector: 'app-carousel',
+  template: '',
+})
+class CarouselComponent {}
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let homeService: HomeService;
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [HomeComponent],
+      declarations: [HomeComponent, CarouselComponent],
       providers: [{ provide: HomeService, useClass: TestHomeService }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MESSAGES } from 'src/app/constants/constants';
@@ -14,7 +13,6 @@ export class CartService {
     products: [],
   });
   constructor(
-    private readonly http: HttpClient,
     private readonly toasterService: ToasterService
   ) {}
   private calculateTotalItems(products: IProduct[]): number {

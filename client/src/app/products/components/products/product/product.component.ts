@@ -11,7 +11,7 @@ export class ProductComponent {
   @Input() product: IProduct = { price: 0, count: 0 };
   constructor(private readonly cartService: CartService) {}
 
-  buyNow(item: IProduct): void {
-    this.cartService.addItemToCart(item);
+  buyNow(): void {
+    this.cartService.addItemToCart(this.product);
   }
 }

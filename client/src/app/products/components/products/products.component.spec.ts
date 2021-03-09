@@ -1,4 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
@@ -20,9 +21,10 @@ describe('ProductsComponent', () => {
   let fixture: ComponentFixture<ProductsComponent>;
   let activatedRoute: ActivatedRoute;
   let productsService: ProductsService;
+  let selectedCategory: string | null | undefined;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ProductsComponent],
       providers: [
@@ -30,10 +32,11 @@ describe('ProductsComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            queryParams: of({category: getTestCategories()[0].id}),
+            queryParams: of({ category: getTestCategories()[0].id }),
           },
         },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
   });
 
@@ -54,9 +57,16 @@ describe('ProductsComponent', () => {
     tick();
     expect(component.categories.length).toBeGreaterThan(0);
   }));
-  it('should display products', fakeAsync(() => {
-    activatedRoute.snapshot.queryParams.category
+
+  it('category is selected (filtered products)', fakeAsync(() => {
+    component.ngOnInit();
+    activatedRoute.queryParams.subscribe((res) => {
+      selectedCategory = res.category;
+    });
     tick();
-    expect(component.products.length).toBeGreaterThan(0);
+    expect(selectedCategory).toEqual(component.selectedCategory);
+    expect(component.products).toEqual(
+      getTestProducts().filter((item) => item.category === selectedCategory)
+    );
   }));
 });
