@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PRODUCTS } from 'src/app/constants/routes.constants';
-import { ICategory } from 'src/app/interfaces/interfaces';
+import { Category } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-category',
@@ -9,7 +9,7 @@ import { ICategory } from 'src/app/interfaces/interfaces';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent {
-  @Input() categories: ICategory[] = [];
+  @Input() categories: Category[] = [];
   constructor(private readonly router: Router) {}
 
   onExplore(id?: string): void {

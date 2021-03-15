@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICategory } from 'src/app/interfaces/interfaces';
+import { Category } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +8,7 @@ import { ICategory } from 'src/app/interfaces/interfaces';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnChanges {
-  @Input() categories: ICategory[] = [];
+  @Input() categories: Category[] = [];
   @Input() selectedCategory: string | undefined;
   dropdownFlag = false;
   selectedCategoryName: string | undefined;

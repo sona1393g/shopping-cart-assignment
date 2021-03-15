@@ -2,23 +2,35 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { ApiEndPoints } from 'src/app/constants/apiEndPoints';
-import { ICategory, IProduct } from 'src/app/interfaces/interfaces';
+import { Category, Product } from 'src/app/interfaces/interfaces';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductsService {
   constructor(private readonly http: HttpClient) {}
   /**
    * @description Api call to get products
    */
-  getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(ApiEndPoints.GET_PRODUCTS);
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(ApiEndPoints.GET_PRODUCTS).pipe(
+      map((item) => {
+        const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+        if (cart.products) {
+          item.forEach((i) => {
+            const product = cart.products[i.id];
+            if (product) {
+              (i.count = product.count), (i.total = product.total);
+            }
+          });
+        }
+        return item;
+      })
+    );
   }
   /**
    * @description Api call to get home page categories
    */
-  getCategories(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(ApiEndPoints.GET_CATEGORIES);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(ApiEndPoints.GET_CATEGORIES);
   }
 }

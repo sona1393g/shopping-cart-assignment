@@ -1,71 +1,108 @@
 <section class="main-container">
-    <div class="form__heading">
-        <h2>Sign up</h2>
-        <p>We don't share your personal information with anyone.</p>
-    </div>
-    <div class="form__container">
-        <form action="#" autocomplete="off">
-            <div class="form__input">
-
-                <input
-                    id="firstName"
-                    type="text"
-                    name="firstName"
-                    required
-                    aria-labelledby="firstName-label"
-                    aria-required="true"
-                >
-                <label for="firstName" id="firstName-label">First name</label>
-            </div>
-            <div class="form__input">
-
-                <input
-                    id="lastName"
-                    type="text"
-                    name="lastName"
-                    required
-                    aria-labelledby="lastName-label"
-                    aria-required="true"
-                >
-                <label for="lastName" id="lastName-label">Last Name</label>
-            </div>
-            <div class="form__input">
-
-                <input
-                    id="email"
-                    type="text"
-                    name="email"
-                    required
-                    aria-labelledby="email-label"
-                    aria-required="true"
-                >
-                <label for="email" id="email-label">Email</label>
-            </div>
-            <div class="form__input">
-
-                <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    required
-                    aria-labelledby="password-label"
-                    aria-required="true"
-                >
-                <label for="password" id="password-label">Password</label>
-            </div>
-            <div class="form__input">
-
-                <input
-                    id="confirmPassword"
-                    type="password"
-                    name="confirmPassword"
-                    required
-                    aria-labelledby="confirmPassword-label"
-                    aria-required="true"
-                >
-                <label for="confirmPassword" id="confirmPassword-label">Confirm Password</label>
-            </div>
-            <button class="btn-big-pink">Sign Up</button>
-        </form>
-    </div>
+  <div class="form__heading">
+    <h2>Sign up</h2>
+    <p>We don't share your personal information with anyone.</p>
+  </div>
+  <div class="form__container">
+    <form action="#" autocomplete="off" (ngSubmit)="submitData()" [formGroup]="signUpForm">
+      <div class="form__input">
+        <input
+          id="firstName"
+          type="text"
+          name="firstName"
+          required
+          aria-labelledby="firstName-label"
+          aria-required="true"
+          formControlName="fname"
+        />
+        <label for="firstName" id="firstName-label">First name</label>
+      </div>
+      <app-form-error
+        [errors]="signUpForm.controls['fname'].errors"
+        [showError]="
+          signUpForm.controls['fname'].dirty ||
+          signUpForm.controls['fname'].touched
+        "
+      ></app-form-error>
+      <div class="form__input">
+        <input
+          id="lastName"
+          type="text"
+          name="lastName"
+          required
+          aria-labelledby="lastName-label"
+          aria-required="true"
+          formControlName="lname"
+        />
+        <label for="lastName" id="lastName-label">Last Name</label>
+      </div>
+      <app-form-error
+        [errors]="signUpForm.controls['lname'].errors"
+        [showError]="
+          signUpForm.controls['lname'].dirty ||
+          signUpForm.controls['lname'].touched
+        "
+      ></app-form-error>
+      <div class="form__input">
+        <input
+          id="email"
+          type="text"
+          name="email"
+          required
+          aria-labelledby="email-label"
+          aria-required="true"
+          formControlName="email"
+        />
+        <label for="email" id="email-label">Email</label>
+      </div>
+      <app-form-error
+        [errors]="signUpForm.controls['email'].errors"
+        [showError]="
+          signUpForm.controls['email'].dirty ||
+          signUpForm.controls['email'].touched
+        "
+      ></app-form-error>
+      <div class="form__input">
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+          aria-labelledby="password-label"
+          aria-required="true"
+          formControlName="password"
+        />
+        <label for="password" id="password-label">Password</label>
+      </div>
+      <app-form-error
+        [errors]="signUpForm.controls['password'].errors"
+        [showError]="
+          signUpForm.controls['password'].dirty ||
+          signUpForm.controls['password'].touched
+        "
+      ></app-form-error>
+      <div class="form__input">
+        <input
+          id="confirmPassword"
+          type="password"
+          name="confirmPassword"
+          required
+          aria-labelledby="confirmPassword-label"
+          aria-required="true"
+          formControlName="confirmPassword"
+        />
+        <label for="confirmPassword" id="confirmPassword-label"
+          >Confirm Password</label
+        >
+      </div>
+      <app-form-error
+        [errors]="signUpForm.controls['confirmPassword'].errors"
+        [showError]="
+          signUpForm.controls['confirmPassword'].dirty ||
+          signUpForm.controls['confirmPassword'].touched
+        "
+      ></app-form-error>
+      <button class="btn-big-pink">Sign Up</button>
+    </form>
+  </div>
 </section>

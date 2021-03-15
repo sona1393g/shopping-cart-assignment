@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IBanner } from 'src/app/interfaces/interfaces';
+import { Banner } from 'src/app/interfaces/interfaces';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit {
-  @Input() banners: IBanner[] = [];
+  @Input() banners: Banner[] = [];
   bannerStyle: any[] = ['block'];
   slideIndex = 1;
   baseUrl = environment.apiUrl;

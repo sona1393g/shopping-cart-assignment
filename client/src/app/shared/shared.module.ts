@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FormErrorComponent } from './components/form-error/form-error.component';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,9 @@ import { CartComponent } from './components/cart/cart.component';
     FooterComponent,
     CarouselComponent,
     CartComponent,
+    FormErrorComponent,
   ],
   imports: [CommonModule, RouterModule],
-  exports: [HeaderComponent, FooterComponent, CarouselComponent],
+  exports: [HeaderComponent, FooterComponent, CarouselComponent, FormErrorComponent],
 })
 export class SharedModule {}

@@ -13,12 +13,12 @@
     }
   }
   &__input {
-    padding: 3% 0;
+    padding-top: 3%;
     position: relative;
     label {
       position: absolute;
       pointer-events: none;
-      top: 10px;
+      top: 15px;
       transition: 300ms ease all;
     }
     input {
@@ -27,7 +27,7 @@
       outline: 0;
       background: transparent;
       border-bottom: 1px solid $color-input-gray;
-      padding-top: 10px;
+      padding-top: 20px;
       width: 100%;
       &:focus,
       &:valid {

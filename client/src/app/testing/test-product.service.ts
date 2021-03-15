@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { asyncData } from './async-observable-helpers';
 
 // re-export for tester convenience
-export { ICategory, IBanner } from '../interfaces/interfaces';
+export { Category, Banner } from '../interfaces/interfaces';
 export { HomeService } from '../home/services/home.service';
 export { getTestBanners, getTestCategories } from './mockData';
 
-import { IBanner, ICategory, IProduct } from '../interfaces/interfaces';
+import { Banner, Category, Product } from '../interfaces/interfaces';
 import { getTestBanners, getTestCategories, getTestProducts } from './mockData';
 import { HomeService } from '../home/services/home.service';
 import { HttpClient } from '@angular/common/http';
@@ -27,11 +27,11 @@ export class TestProductService extends ProductsService {
   products = getTestProducts();
   categories = getTestCategories();
 
-  getProducts(): Observable<IProduct[]> {
+  getProducts(): Observable<Product[]> {
     return asyncData(this.products);
   }
 
-  getCategories(): Observable<ICategory[]> {
+  getCategories(): Observable<Category[]> {
     return asyncData(this.categories);
   }
 }

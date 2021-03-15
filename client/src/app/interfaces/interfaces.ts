@@ -1,4 +1,4 @@
-export interface IBanner {
+export interface Banner {
   bannerImageUrl: string;
   bannerImageAlt: string;
   isActive: boolean;
@@ -6,7 +6,7 @@ export interface IBanner {
   id: string;
 }
 
-export interface ICategory {
+export interface Category {
   name?: string;
   key?: string;
   description?: string;
@@ -16,20 +16,20 @@ export interface ICategory {
   id?: string;
 }
 
-export interface IProduct {
+export interface Product {
   name?: string;
   sku?: string;
   description?: string;
   price: number;
   stock?: number;
   imageURL?: string;
-  id?: string;
+  id: string;
   category?: string;
   count: number;
   total?: number;
 }
 
-export interface ICART {
+export interface Cart {
   totalItems: number;
-  products: IProduct[];
+  products: Product[];
 }

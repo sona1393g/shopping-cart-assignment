@@ -1,6 +1,6 @@
-import { IBanner, ICategory, IProduct } from '../interfaces/interfaces';
+import { Banner, Category, Product } from '../interfaces/interfaces';
 
-export function getTestBanners(): IBanner[] {
+export function getTestBanners(): Banner[] {
   return [
     {
       bannerImageUrl: '/static/images/offers/offer1.jpg',
@@ -19,7 +19,7 @@ export function getTestBanners(): IBanner[] {
   ];
 }
 
-export function getTestCategories(): ICategory[] {
+export function getTestCategories(): Category[] {
   return [
     {
       name: 'Beverages',
@@ -73,7 +73,7 @@ export function getTestCategories(): ICategory[] {
   ];
 }
 
-export function getTestProducts(): IProduct[] {
+export function getTestProducts(): Product[] {
   return [
     {
       name: 'Fresho Kiwi - Green, 3 pcs',

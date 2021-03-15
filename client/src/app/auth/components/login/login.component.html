@@ -4,7 +4,12 @@
     <p>Get access to your Orders, Wishlist and Recommandations</p>
   </div>
   <div class="form__container">
-    <form action="#" autocomplete="off">
+    <form
+      action="#"
+      autocomplete="off"
+      [formGroup]="loginForm"
+      (ngSubmit)="submitData()"
+    >
       <div class="form__input">
         <input
           id="email"
@@ -13,9 +18,17 @@
           required
           aria-labelledby="email-label"
           aria-required="true"
+          formControlName="email"
         />
         <label for="email" id="email-label">Email</label>
       </div>
+      <app-form-error
+        [errors]="loginForm.controls['email'].errors"
+        [showError]="
+          loginForm.controls['email'].dirty ||
+          loginForm.controls['email'].touched
+        "
+      ></app-form-error>
       <div class="form__input">
         <input
           id="password"
@@ -24,9 +37,17 @@
           required
           aria-labelledby="password-label"
           aria-required="true"
+          formControlName="password"
         />
         <label for="password" id="password-label">Password</label>
       </div>
+      <app-form-error
+        [errors]="loginForm.controls['password'].errors"
+        [showError]="
+          loginForm.controls['password'].dirty ||
+          loginForm.controls['password'].touched
+        "
+      ></app-form-error>
       <button class="btn-big-pink">Log in</button>
     </form>
   </div>

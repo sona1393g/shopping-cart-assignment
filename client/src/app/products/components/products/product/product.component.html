@@ -1,20 +1,30 @@
-    <h3>{{product.name}}</h3>
-    <div class="product__item">
-        <img src="../../../assets{{product.imageURL}}" alt="">
-        <div class="product__item--text">
-            <p class="product__item--desc" [title]="product.description">
-                {{product.description}}
-            </p>
-            <div class="product__item--price-mbl">
-                <button class="product__item--btn-buy"
-                    attr.aria-label="{{product.name}} Rs. {{product.price}} Buy Now"
-                    (click)="buyNow()"> Buy Now @ Rs. {{product.price}}</button>
-            </div>
-            <div class="product__item--price-desktop">
-                <span class="price">MRP Rs. {{product.price}}</span>
-                <button class="product__item--btn-buy"
-                    attr.aria-label="{{product.name}} Rs. {{product.price}} Buy Now"
-                    (click)="buyNow()"> Buy Now</button>
-            </div>
-        </div>
+<h3>{{ product.name }}</h3>
+<div class="product__item">
+  <img src="../../../assets{{ product.imageURL }}" alt="" />
+  <div class="product__item--text">
+    <p class="product__item--desc" [title]="product.description">
+      {{ product.description }}
+    </p>
+    <div class="product__item--price-mbl">
+      <span class="badge" *ngIf="product.count">{{ product.count }}</span>
+      <button
+        class="product__item--btn-buy"
+        attr.aria-label="{{ product.name }} Rs. {{ product.price }} Buy Now"
+        (click)="buyNow()"
+      >
+        Buy Now @ Rs. {{ product.price }}
+      </button>
     </div>
+    <div class="product__item--price-desktop">
+      <span class="price">MRP Rs. {{ product.price }}</span>
+
+      <button
+        class="product__item--btn-buy"
+        attr.aria-label="{{ product.name }} Rs. {{ product.price }} Buy Now"
+        (click)="buyNow()"
+      >
+        Buy Now  <span class="badge" *ngIf="product.count">{{ product.count }}</span>
+      </button>
+    </div>
+  </div>
+</div>

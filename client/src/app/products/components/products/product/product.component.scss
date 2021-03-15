@@ -25,7 +25,7 @@ h3 {
       font-size: 0.8rem;
     }
     &--desc {
-      flex: 1;
+      // flex: 1; // if wnat full length of description uncomment this
       font-size: 0.8rem;
       padding: 5px;
       margin: 5px;
@@ -47,6 +47,16 @@ h3 {
     &--price-desktop {
       display: none;
     }
+    .badge {
+      position: relative;
+      padding: 1px 5px;
+      border-radius: 50%;
+      background: $color-light-gray;
+      color: $color-black;
+      left: 0px;
+      top: 23px;
+      font-weight: $font-bold;
+    }
     @media only screen and (min-width: 768px) {
       img {
         width: 133px;
@@ -60,6 +70,9 @@ h3 {
       }
       &--btn-buy {
         margin: 0px 5px;
+      }
+      .badge {
+        top: 8px;
       }
     }
     @media only screen and (min-width: 1023px) {
@@ -83,6 +96,10 @@ h3 {
       }
       &--price-mbl {
         display: none;
+      }
+      .badge {
+        left: 5px;
+        top: unset;
       }
     }
   }

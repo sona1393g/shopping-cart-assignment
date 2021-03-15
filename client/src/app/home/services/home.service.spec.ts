@@ -5,7 +5,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { HomeService } from './home.service';
-import { IBanner, ICategory } from 'src/app/interfaces/interfaces';
+import { Banner, Category } from 'src/app/interfaces/interfaces';
 import { environment } from '../../../environments/environment';
 import { ApiEndPoints } from 'src/app/constants/apiEndPoints';
 import { getTestBanners, getTestCategories } from 'src/app/testing/mockData';
@@ -33,7 +33,7 @@ describe('HomeService', () => {
     expect(service).toBeTruthy();
   });
   it('should return expected banners (HttpClient called once)', () => {
-    const expectedBanners: IBanner[] = getTestBanners();
+    const expectedBanners: Banner[] = getTestBanners();
 
     httpClientSpy.get.and.returnValue(asyncData(expectedBanners));
 
@@ -47,7 +47,7 @@ describe('HomeService', () => {
     expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
   });
   it('should return expected categories (HttpClient called once)', () => {
-    const expectedCategories: ICategory[] = getTestCategories();
+    const expectedCategories: Category[] = getTestCategories();
 
     httpClientSpy.get.and.returnValue(asyncData(expectedCategories));
 

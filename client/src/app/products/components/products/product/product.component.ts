@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from 'src/app/interfaces/interfaces';
+import { Product } from 'src/app/interfaces/interfaces';
 import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
-  @Input() product: IProduct = { price: 0, count: 0 };
+  @Input() product: Product = { price: 0, count: 0, id: '' };
   constructor(private readonly cartService: CartService) {}
 
   buyNow(): void {

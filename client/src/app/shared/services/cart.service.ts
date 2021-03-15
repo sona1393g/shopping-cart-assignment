@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MESSAGES } from 'src/app/constants/constants';
-import { ICART, IProduct } from 'src/app/interfaces/interfaces';
+import { Cart, Product } from 'src/app/interfaces/interfaces';
 import { ToasterService } from './toaster.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private itemsInCart = new BehaviorSubject<ICART>({
+  private itemsInCart = new BehaviorSubject<Cart>({
     totalItems: 0,
     products: [],
   });
-  constructor(
-    private readonly toasterService: ToasterService
-  ) {}
-  private calculateTotalItems(products: IProduct[]): number {
+  private cartValue: { [key: string]: any } = {};
+  constructor(private readonly toasterService: ToasterService) {}
+  private calculateTotalItems(products: Product[]): number {
     let totalItemInCart = 0;
     products.forEach((item) => {
       totalItemInCart = item.count + totalItemInCart;
     });
     return totalItemInCart;
   }
-  addItemToCart(newItem: IProduct): void {
+  addItemToCart(newItem: Product): void {
     const currentItems = this.itemsInCart.value.products;
     newItem.count = newItem.count ? newItem.count + 1 : 1;
     newItem.total = newItem.count * newItem.price;
@@ -30,13 +29,12 @@ export class CartService {
     index === -1 ? currentItems.push(newItem) : (currentItems[index] = newItem);
     this.toasterService.show(MESSAGES.PRODUCT_ADDED);
 
-    this.itemsInCart.next({
-      products: currentItems,
-      totalItems: this.calculateTotalItems(currentItems),
-    });
+    this.broadcastCart(currentItems);
+    this.cartValue[newItem.id] = { count: newItem.count, total: newItem.total };
+    this.saveCartValue();
   }
 
-  getItemOfCart(): Observable<ICART> {
+  getItemOfCart(): Observable<Cart> {
     return this.itemsInCart.asObservable();
   }
 
@@ -49,16 +47,36 @@ export class CartService {
       currentItems[indexToDelete].count = currentItems[indexToDelete].count - 1;
       currentItems[indexToDelete].total =
         currentItems[indexToDelete].count * currentItems[indexToDelete].price;
-      this.itemsInCart.next({
-        products: currentItems,
-        totalItems: this.calculateTotalItems(currentItems),
-      });
+      this.broadcastCart(currentItems);
+      this.cartValue[itemToDelete.id] = {
+        count: currentItems[indexToDelete].count,
+        total: currentItems[indexToDelete].total,
+      };
     } else {
       currentItems.splice(indexToDelete, 1);
-      this.itemsInCart.next({
-        products: currentItems,
-        totalItems: this.calculateTotalItems(currentItems),
-      });
+      delete this.cartValue[itemToDelete.id];
+      this.broadcastCart(currentItems);
+    }
+
+    this.saveCartValue();
+  }
+  private saveCartValue() {
+    localStorage.setItem(
+      'cart',
+      JSON.stringify({
+        products: this.cartValue,
+        totalItems: this.itemsInCart.value.totalItems,
+      })
+    );
+  }
+  broadcastCart(currentItems: Product[], updatecart = false) {
+    this.itemsInCart.next({
+      products: currentItems,
+      totalItems: this.calculateTotalItems(currentItems),
+    });
+    if (updatecart) {
+      this.cartValue =
+        JSON.parse(localStorage.getItem('cart') || '{}').products || {};
     }
   }
 }

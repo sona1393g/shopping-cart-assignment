@@ -13,6 +13,7 @@ header {
     flex: 1;
     img {
       width: 115px;
+      cursor: pointer;
     }
   }
   .navigation {
@@ -29,6 +30,9 @@ header {
           font-weight: $font-bold;
           cursor: pointer;
           text-decoration: none;
+          &.active {
+            color: $color-pink;
+          }
         }
       }
     }
